@@ -1,43 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
+let id=4
+
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
+	let full_name = ""
+	let email = ""
+	let phone = ""
+	let address = ""
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
-};
+	return <div className="container-div">
+		<h1>Add a new contact</h1>
+		<label>Full name</label>
+		<input placeholder="Enter full name" onChange={(text)=>{full_name=text.target.value}}></input>
+		<label>Email</label>
+		<input placeholder="Enter email" onChange={(text)=>{email=text.target.value}}></input>
+		<label>Phone</label>
+		<input placeholder="Enter phone" onChange={(text)=>{phone=text.target.value}}></input>
+		<label>Address</label>
+		<input placeholder="Enter address" onChange={(text)=>{address=text.target.value}}></input>
+		<Link to="/"><button onClick={()=>{actions.createContact(full_name, email, phone, address, id)}}>Save</button></Link>
+	</div>
+}

@@ -1,43 +1,46 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
+			contactList: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					"address": "Venezuela",
+					"agenda_slug": "Zeckrox",
+					"email": "stefano@boschetti.com",
+					"full_name": "Stefano elLoco",
+					"id": 1,
+					"phone": "4149202732"
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
+					"address": "Miami",
+					"agenda_slug": "Zeckrox",
+					"email": "lio@goat.com",
+					"full_name": "Lionel Messi",
+					"id": 2,
+					"phone": "565653232"
+				},
+				{
+					"address": "En todos lados",
+					"agenda_slug": "Zeckrox",
+					"email": "chuito_god@sky.com",
+					"full_name": "Jesucristo",
+					"id": 3,
+					"phone": "65623232323"
 				}
 			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			createContact: (full_name, email, phone, address, id) => {
+				const store = getStore();
+				if(full_name=="" || email=="" || phone=="" || address==""){return alert("Fill all fields")}
+				setStore({...store, contactList:[...store.contactList, {full_name, email, phone, address, id, "agenda_slug": "Zeckrox"}]});
+				id++
 			},
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
 		}
 	};
 };
