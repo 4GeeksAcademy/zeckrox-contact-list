@@ -3,7 +3,6 @@ import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import { ContactCard } from "../component/contactCard";
 
-
 export const Home = props => {
 	const { store, actions } = useContext(Context);
 
@@ -14,7 +13,10 @@ export const Home = props => {
 			name={contact.full_name}
 			address={contact.address}
 			phone={contact.phone}
-    		email={contact.email}/>))}
+    		email={contact.email}
+			trash={()=>actions.deleteContact(contact)}
+			pencil={()=>actions.deleteContact(contact)}
+			/>))}
 	</div>)}
 ;
 

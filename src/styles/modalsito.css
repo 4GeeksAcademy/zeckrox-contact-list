@@ -1,0 +1,49 @@
+.modalsito-background{
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 50%;
+}
+
+.modalsito{
+    position: fixed;
+    background-color: white;
+    width: 40%;
+    height: 60%;
+    top: 20%;
+    left: 30%;
+    border-radius:2%;
+    padding:3%;
+    
+}
+.modalsito-inside{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+
+.modalsito-inside h2{
+    font-size: 40px;
+    margin-bottom: 5%;
+}
+
+.modalsito-inside label{
+    text-align:left;
+    font-size: 20px
+}
+
+.modalsito-inside input{
+    margin-bottom: 3%;
+}
+
+.modalsito-inside button{
+    margin-top: 3%;
+}
+
+.modalsito-inside span button{
+    margin-top: 10%;
+    margin-left: 5%;
+}

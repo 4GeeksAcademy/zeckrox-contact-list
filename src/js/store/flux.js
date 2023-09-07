@@ -32,15 +32,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			createContact: (full_name, email, phone, address, id) => {
 				const store = getStore();
-				if(full_name=="" || email=="" || phone=="" || address==""){return alert("Fill all fields")}
+				if(full_name=="" || email=="" || phone=="" || address==""){
+					return false
+				}
 				setStore({...store, contactList:[...store.contactList, {full_name, email, phone, address, id, "agenda_slug": "Zeckrox"}]});
 				id++
+				return true
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			deleteContact: (elm) => {
+				const store = getStore();
+				setStore({...store , contactList: store.contactList.filter(contacts => contacts.id != elm.id)})
 			},
+			toggleModal:()=>{
+			
+			}
 		}
 	};
 };
