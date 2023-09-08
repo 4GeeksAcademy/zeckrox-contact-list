@@ -1,6 +1,39 @@
+body{
+}
 .container-div{
     display:flex;
     flex-direction: column;
     width:30%;
     margin:auto;
+}
+
+.container-div button{
+    margin-top:4%;
+    width: 30%;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+    color:white;
+    background-color: #0d6efd
+}
+
+.container-div input{
+    border-radius: 5px;
+    border: 2px solid #F1F3F4;
+    margin-bottom: 2%;
+    padding: 4px;
+}
+
+.container-div h1{
+    font-weight: 700;
+    align-self: center;
+    color: #333;
+    margin-bottom: 5%
+}
+
+.container-div p{
+    margin: 0;
+    font-style: italic;
+    font-size: 13px;
+    color: #757575;
 }

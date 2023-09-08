@@ -23,14 +23,11 @@ export const CreateContact = () => {
 
 	return <div className="container-div">
 		<h1>Add a new contact</h1>
-		<label>Full name</label>
-		<input placeholder="Enter full name" onChange={(text)=>setContact({...contact, full_name:text.target.value})}></input>
-		<label>Email</label>
-		<input placeholder="Enter email" onChange={(text)=>setContact({...contact, email:text.target.value})}></input>
-		<label>Phone</label>
-		<input placeholder="Enter phone" onChange={(text)=>setContact({...contact, phone:text.target.value})}></input>
-		<label>Address</label>
-		<input placeholder="Enter address" onChange={(text)=>setContact({...contact, address:text.target.value})}></input>
+		<input placeholder="Full name *" onChange={(text)=>setContact({...contact, full_name:text.target.value})}></input>
+		<input placeholder="Email *" onChange={(text)=>setContact({...contact, email:text.target.value})}></input>
+		<input placeholder="Phone *" onChange={(text)=>setContact({...contact, phone:text.target.value})}></input>
+		<input placeholder="Address *" onChange={(text)=>setContact({...contact, address:text.target.value})}></input>
+		<p>Items marked with an * are required.</p>
 		<button onClick={()=>contactAdd()}>Save</button>
 	</div>
 }
