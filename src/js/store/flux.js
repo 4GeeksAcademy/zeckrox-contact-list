@@ -11,41 +11,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"phone": "4149202732"
 				},
 				{
-					"address": "Miami",
+					"address": "Venezuela",
 					"agenda_slug": "Zeckrox",
-					"email": "lio@goat.com",
-					"full_name": "Lionel Messi",
+					"email": "stefano@boschetti.com",
+					"full_name": "Stefano elLoco",
 					"id": 2,
-					"phone": "565653232"
+					"phone": "12412412412"
 				},
 				{
-					"address": "En todos lados",
+					"address": "Venezuela",
 					"agenda_slug": "Zeckrox",
-					"email": "chuito_god@sky.com",
-					"full_name": "Jesucristo",
+					"email": "stefano@boschetti.com",
+					"full_name": "Stefano elLoco",
 					"id": 3,
-					"phone": "65623232323"
-				}
+					"phone": "574564"
+				},
 			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			createContact: (full_name, email, phone, address, id) => {
+			createContact: (contact, id) => {
 				const store = getStore();
-				if(full_name=="" || email=="" || phone=="" || address==""){
-					return false
-				}
-				setStore({...store, contactList:[...store.contactList, {full_name, email, phone, address, id, "agenda_slug": "Zeckrox"}]});
-				id++
+				if(contact.full_name=="" || contact.email=="" || contact.phone=="" || contact.address=="")return false
+
+				setStore({...store, contactList:[...store.contactList, {...contact, id, "agenda_slug": "Zeckrox"}]});
 				return true
 			},
 			deleteContact: (elm) => {
 				const store = getStore();
 				setStore({...store , contactList: store.contactList.filter(contacts => contacts.id != elm.id)})
 			},
-			toggleModal:()=>{
-			
-			}
+			editContact:(currentContact, contactNewInfo)=>{
+				const store = getStore();
+				let searchContact = store.contactList.find(person => currentContact.id == person.id)
+				if(searchContact){
+					contactNewInfo.full_name!=""? searchContact.full_name = contactNewInfo.full_name : ""
+					contactNewInfo.email!=""? searchContact.email = contactNewInfo.email : ""
+					contactNewInfo.phone!=""? searchContact.phone = contactNewInfo.phone : ""  
+					contactNewInfo.address!=""?searchContact.address = contactNewInfo.address : ""
+					setStore("")
+				}
+				return true
+			},
 		}
 	};
 };
