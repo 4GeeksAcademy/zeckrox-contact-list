@@ -2,45 +2,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contactList: [
-				{
-					"address": "Venezuela",
-					"agenda_slug": "Zeckrox",
-					"email": "stefano@boschetti.com",
-					"full_name": "Stefano elLoco",
-					"id": 1,
-					"phone": "4149202732"
-				},
-				{
-					"address": "Venezuela",
-					"agenda_slug": "Zeckrox",
-					"email": "stefano@boschetti.com",
-					"full_name": "Stefano elLoco",
-					"id": 2,
-					"phone": "12412412412"
-				},
-				{
-					"address": "Venezuela",
-					"agenda_slug": "Zeckrox",
-					"email": "stefano@boschetti.com",
-					"full_name": "Stefano elLoco",
-					"id": 3,
-					"phone": "574564"
-				},
 			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			createContact: (contact, id) => {
+			createContact: (contact) => {
 				const store = getStore();
 				if(contact.full_name=="" || contact.email=="" || contact.phone=="" || contact.address=="")return false
-
-				setStore({...store, contactList:[...store.contactList, {...contact, id, "agenda_slug": "Zeckrox"}]});
+				fetch('https://playground.4geeks.com/apis/fake/contact/', {
+					method: "POST",
+					body: JSON.stringify({...contact, "agenda_slug": "Zeckrox"}),
+					headers:{'Content-Type': 'application/json'}})
+				setStore({...store, contactList:[...store.contactList, {...contact, "agenda_slug": "Zeckrox"}]});
 				return true
 			},
+
 			deleteContact: (elm) => {
 				const store = getStore();
+				fetch('https://playground.4geeks.com/apis/fake/contact/'+elm.id, {
+					method: "DELETE",
+					headers:{'Content-Type': 'application/json'}})
 				setStore({...store , contactList: store.contactList.filter(contacts => contacts.id != elm.id)})
 			},
+
 			editContact:(currentContact, contactNewInfo)=>{
 				const store = getStore();
 				let searchContact = store.contactList.find(person => currentContact.id == person.id)
@@ -50,8 +34,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					contactNewInfo.phone!=""? searchContact.phone = contactNewInfo.phone : ""  
 					contactNewInfo.address!=""?searchContact.address = contactNewInfo.address : ""
 					setStore("")
+
+				fetch('https://playground.4geeks.com/apis/fake/contact/'+currentContact.id, {
+				method: "PUT",
+				body: JSON.stringify(searchContact),
+				headers:{'Content-Type': 'application/json'}})
 				}
 				return true
+			},
+
+			contactsLoad: (json) => {
+				const store = getStore();
+				setStore({contactList:json})
 			},
 		}
 	};

@@ -5,9 +5,8 @@ import { EditModal } from "./editModal";
 export const ContactCard = (contact)=>{
 	const [ open, setOpen ] = useState(false)
 
-
     return <><div className="contact-div">
-        <img className="contact-photo" src={`https://i.pravatar.cc/?img=${contact.image}`} alt="Contact image"/>
+        <img className="contact-photo" src={`https://i.pravatar.cc/?img=${parseInt(Math.random()*70)}`} alt="Contact image"/>
         <div className="d-flex w-100 justify-content-between">
             <span className="left-span">
             <span><h3>{contact.full_name}</h3></span>

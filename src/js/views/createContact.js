@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import "../../styles/createContact.css";
 
-let id=4
-
 export const CreateContact = () => {
 	const navigate = useNavigate()
 	const { store, actions } = useContext(Context);
@@ -18,8 +16,8 @@ export const CreateContact = () => {
 	})
 
 	function contactAdd (){
-		let response = actions.createContact(contact, id);
-		if(response) id++; navigate("/");
+		let response = actions.createContact(contact);
+		if(response) navigate("/");
 		if(!response) alert("Fill all fields");
 	}
 

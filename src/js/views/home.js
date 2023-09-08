@@ -11,7 +11,6 @@ export const Home = props => {
 		{store.contactList.map((contact)=>(
 		<ContactCard
 			key={contact.id}
-			image={contact.id}
 			id={contact.id}
 			full_name={contact.full_name}
 			address={contact.address}
