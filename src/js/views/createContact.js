@@ -23,11 +23,28 @@ export const CreateContact = () => {
 
 	return <div className="container-div">
 		<h1>Add a new contact</h1>
-		<input placeholder="Full name *" onChange={(text)=>setContact({...contact, full_name:text.target.value})}></input>
-		<input placeholder="Email *" onChange={(text)=>setContact({...contact, email:text.target.value})}></input>
-		<input placeholder="Phone *" onChange={(text)=>setContact({...contact, phone:text.target.value})}></input>
-		<input placeholder="Address *" onChange={(text)=>setContact({...contact, address:text.target.value})}></input>
-		<p>Items marked with an * are required.</p>
+
+		<div className="input-holder">
+			<input required onChange={(text)=>setContact({...contact, full_name:text.target.value})}></input>
+			<label>Full name<span>*</span></label>
+		</div>
+
+		<div className="input-holder">
+			<input required onChange={(text)=>setContact({...contact, email:text.target.value})}></input>
+			<label>Email<span>*</span></label>
+		</div>
+
+		<div className="input-holder">
+			<input required onChange={(text)=>setContact({...contact, phone:text.target.value})}></input>
+			<label>Phone<span>*</span></label>
+		</div>
+		
+		<div className="input-holder">
+			<input required onChange={(text)=>setContact({...contact, address:text.target.value})}></input>
+			<label>Address<span>*</span></label>
+		</div>
+
+		<p>Items marked with an <span>*</span> are required.</p>
 		<button onClick={()=>contactAdd()}>Save</button>
 	</div>
 }
